@@ -1,0 +1,31 @@
+<!-- src/app/components/register/register.component.html -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Inscription</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form (ngSubmit)="register()">
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text" [(ngModel)]="user.lastName" name="lastName" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Prénom</ion-label>
+        <ion-input type="text" [(ngModel)]="user.firstName" name="firstName" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+      <ion-button (click)="takePhoto()" expand="block">Prendre une photo</ion-button>
+      <ion-button type="submit" expand="block">S'inscrire</ion-button>
+    </form>
+    <ion-button expand="block" fill="clear" (click)="goToLogin()">
+      Déjà un compte ? Se connecter
+    </ion-button>
+  </ion-card-content>
+</ion-card>

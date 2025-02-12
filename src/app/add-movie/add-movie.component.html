@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Ajouter un Film</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="movie.title" placeholder="Titre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="movie.genre" placeholder="Genre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="movie.year" placeholder="Année"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="movie.imageUrl" placeholder="URL de l'image"></ion-input>
+      </ion-item>
+    </ion-list>
+  
+    <ion-button expand="full" (click)="saveMovie()">Enregistrer</ion-button>
+  </ion-content>
+  

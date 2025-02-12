@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Liste des Films</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="addMovie()">Ajouter</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let movie of movies$ | async">
+        <ion-thumbnail slot="start">
+          <img [src]="movie.imageUrl" alt="Affiche de {{ movie.title }}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.genre }} - {{ movie.year }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
