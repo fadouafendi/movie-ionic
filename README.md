@@ -8,8 +8,8 @@
 ## Tasks
 - authentification:  done
 - listMovies: done
-
 - add-movies: done
 - show likes number and heart filled if favorite: done
+- register: adel
 - desactiver les users
 - calcul correspondances
