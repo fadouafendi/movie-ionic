@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet, IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule],
   standalone: true,
 })
 export class AppComponent {

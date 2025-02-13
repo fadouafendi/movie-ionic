@@ -19,12 +19,18 @@ export class RegisterPage {
     email: '',
     photo: '',
     isActive: true,
+    favoriteMovies: [],
     role: 'user'
   };
   password = '';
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
+
+
+  ngOnInit() {
+    if (sessionStorage.getItem("connectedUser") && sessionStorage.getItem("connectedUser") !== "") this.router.navigate(["/movies"])
+  }
 
   async takePhoto() {
     const photo = await this.authService.takePhoto();

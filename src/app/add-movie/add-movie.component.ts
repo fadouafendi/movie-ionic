@@ -14,14 +14,28 @@ import { IonicModule } from '@ionic/angular';
   imports: [CommonModule, FormsModule, IonicModule]
 })
 export class AddMoviePage {
-  movie: Movie = { title: '', genre: '', year: new Date().getFullYear(), imageUrl: '' };
+  movie: Movie = { title: '', genre: '', year: new Date().getFullYear(), favoriteCount: 0 };
 
   constructor(private movieService: MovieService, private router: Router) {}
 
+
+  ngOnInit() {
+    if (!sessionStorage.getItem("connectedUser")) this.router.navigate(["/login"])
+  }
+
   saveMovie() {
     if (this.movie.title && this.movie.genre && this.movie.year) {
-      this.movieService.addMovie(this.movie);
-      this.router.navigate(['/movies']);
+      console.log(this.movie);
+      this.movieService.addMovie(this.movie).subscribe({
+        next: (addedMovie: Movie) => {
+          console.log("Movie added:", addedMovie);
+          this.router.navigate(['/movies']);
+        },
+        error: (error) => {
+          console.error("Error adding movie:", error);
+        }
+      });
     }
   }
+  
 }

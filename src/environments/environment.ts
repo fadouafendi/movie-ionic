@@ -5,12 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyCNscmI121EZTnG4xHxVVFBDqQ6rcwm_9c",
-    authDomain: "movies-ffb5e.firebaseapp.com",
-    projectId: "movies-ffb5e",
-    storageBucket: "movies-ffb5e.firebasestorage.app",
-    messagingSenderId: "530149187377",
-    appId: "1:530149187377:web:39836635ec49d2f6a71a10"
+    apiKey: "AIzaSyAPK988t52b4esvhjFBn5dBUA63ihms4gQ",
+    authDomain: "movieapp-f75da.firebaseapp.com",
+    databaseURL: "https://movieapp-f75da-default-rtdb.firebaseio.com",
+    projectId: "movieapp-f75da",
+    storageBucket: "movieapp-f75da.firebasestorage.app",
+    messagingSenderId: "773402718164",
+    appId: "1:773402718164:web:700e794831501f7eebf041",
+    measurementId: "G-L8XWYJMECK"
   }
 };
 

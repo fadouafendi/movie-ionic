@@ -19,10 +19,14 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  ngOnInit() {
+    if (sessionStorage.getItem("connectedUser") && sessionStorage.getItem("connectedUser") !== "") this.router.navigate(["/movies"])
+  }
+
   async login() {
     try {
       await this.authService.login(this.email, this.password);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/movies']);
     } catch (error) {
       console.error('Erreur de connexion', error);
     }
