@@ -26,4 +26,13 @@ export class UserComponent implements OnInit {
     }
     this.users$ = this.userService.getUsers();  
   }
+
+
+  deactivateUser(user: User) {
+    this.userService.desactivateUser(user.id!).then(() => {
+      user.desactivated = true; 
+    }).catch(error => {
+      console.error("Failed to deactivate user:", error);
+    });
+  }
 }

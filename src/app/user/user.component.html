@@ -6,13 +6,17 @@
     <p><strong>Status:</strong> {{ user.desactivated ? 'Inactive' : 'Active' }}</p>
     <p><strong>Role:</strong> {{ user.role }}</p>
 
-     <!-- <button *ngIf="user.isActive" class="deactivate-btn" (click)=""> -->
+     <!-- <button *ngIf="user.isActive" class="deactivate-btn" (click)=""> 
       <div class="action-container">
        <button *ngIf="user.desactivated == false" class="deactivate-btn" >
           Desactivate
         </button>
       </div>
+  </div> -->
+ 
+  <div class="action-container">
+    <button (click)="deactivateUser(user)" class="deactivate-btn" [disabled]="user.desactivated" [ngClass]="{ 'deactivated': user.desactivated }">
+      {{ user.desactivated ? 'Desactivated' : 'Desactivate' }}
+    </button>
   </div>
- 
- 
   </div>

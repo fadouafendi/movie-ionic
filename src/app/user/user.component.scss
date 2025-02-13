@@ -42,3 +42,12 @@
   .deactivate-btn:hover {
     background-color: #d32f2f;  
   }
+
+  button:hover {
+    background-color: #d32f2f;
+  }
+  
+  button.deactivated {
+    background-color: gray;
+    cursor: not-allowed;
+  }

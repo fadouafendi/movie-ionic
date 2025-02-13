@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Database, ref, onValue, push, set } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { Database, ref, onValue, push, set, update, get } from '@angular/fire/database';
+import { Observable, from } from 'rxjs';
 import { User } from '../models/user.model';
+import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,36 @@ export class UserService {
      
       return () => unsubscribe();
     });
+  }
+
+  desactivateUser(userId: string): Promise<void> {
+    const userRef = ref(this.db, `users/${userId}`);
+    return update(userRef, { desactivated: true }); 
+  }
+
+  getUserById(userId: string): Observable<User | null> {
+    const userRef = ref(this.db, `users/${userId}`);
+    return from(get(userRef).then(snapshot => snapshot.exists() ? snapshot.val() as User : null));
+  }
+
+  async getUserByEmail(email: string): Promise<User | null> {
+    try {
+      const usersRef = ref(this.db, 'users');
+      const snapshot = await get(usersRef);
+
+      if (!snapshot.exists()) return null;
+
+      const users = snapshot.val();
+
+      // Find the user with the matching email
+      const userKey = Object.keys(users).find(key => users[key].email === email);
+
+      if (!userKey) return null;
+
+      return { id: userKey, ...users[userKey] } as User;
+    } catch (error) {
+      console.error('Error fetching user by email:', error);
+      return null;
+    }
   }
 }

@@ -7,6 +7,7 @@ import { Storage, ref, uploadString, getDownloadURL } from '@angular/fire/storag
 import { Router } from '@angular/router';
 import { ref as dbRef, equalTo, get, getDatabase, orderByChild, query } from '@angular/fire/database';
 import { User as AppUser} from '../models/user.model';
+import { UserService } from '../services/users.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null);
   user$: Observable<User | null> = this.userSubject.asObservable();
 
-  constructor(private auth: Auth, private firestore: Firestore, private storage: Storage, private router: Router) { }
+  constructor(private auth: Auth, private firestore: Firestore, private storage: Storage, private router: Router, private userService: UserService) {}
 
 
   // Prendre une photo
@@ -106,15 +107,27 @@ export class AuthService {
   // Connexion avec email & mot de passe
   async login(email: string, password: string) {
     try {
+
+      const user = await this.userService.getUserByEmail(email);
+
+      if (!user) {
+        return null;
+      }
+
+      if (user.desactivated){
+        throw new Error("No connected user email found in session storage.");
+        }
+       
+     
       // Sign in the user with email and password
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       const userEmail = userCredential.user.email ?? "";
-
+     
       // Save connected user email to session storage
       sessionStorage.setItem("connectedUser", userEmail);
 
       const connectedUser = await this.getCurrentUser()
-      
+   
       sessionStorage.setItem("favoriteMovies", JSON.stringify(connectedUser.favoriteMovies ?? []))
       
       return userCredential.user;
