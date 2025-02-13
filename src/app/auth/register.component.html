@@ -1,31 +1,95 @@
-<!-- src/app/components/register/register.component.html -->
+<ion-content>
 <ion-card>
   <ion-card-header>
     <ion-card-title>Inscription</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <form (ngSubmit)="register()">
+      <!-- User Details -->
       <ion-item>
         <ion-label position="floating">Nom</ion-label>
-        <ion-input type="text" [(ngModel)]="user.lastName" name="lastName" required></ion-input>
+        <ion-input
+          type="text"
+          [(ngModel)]="user.lastName"
+          name="lastName"
+          required
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Prénom</ion-label>
-        <ion-input type="text" [(ngModel)]="user.firstName" name="firstName" required></ion-input>
+        <ion-input
+          type="text"
+          [(ngModel)]="user.firstName"
+          name="firstName"
+          required
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
+        <ion-input
+          type="email"
+          [(ngModel)]="user.email"
+          name="email"
+          required
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Mot de passe</ion-label>
-        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        ></ion-input>
       </ion-item>
-      <ion-button (click)="takePhoto()" expand="block">Prendre une photo</ion-button>
-      <ion-button type="submit" expand="block">S'inscrire</ion-button>
+
+      <!-- Photo Upload Section -->
+      <ion-item lines="none">
+        <ion-label>Photo de profil</ion-label>
+      </ion-item>
+
+      <!-- Button to take a photo using the device camera -->
+      <ion-button expand="block" (click)="takePhoto()">
+        Prendre une photo
+      </ion-button>
+
+      <!-- Button to choose an image file from device storage -->
+      <ion-button expand="block" (click)="fileInput.click()">
+        Choisir un fichier
+      </ion-button>
+      <!-- Hidden file input element -->
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+
+      <!-- Button to upload the selected file (enabled only if a file is selected) -->
+      <ion-button expand="block" (click)="uploadImage()" [disabled]="!selectedFile">
+        Upload Image
+      </ion-button>
+
+      <!-- Preview the uploaded image -->
+      <ion-item *ngIf="uploadedImageUrl" lines="none">
+        <ion-img
+          [src]="uploadedImageUrl"
+          style="max-width: 100%; height: auto; margin: 0 auto;"
+        ></ion-img>
+      </ion-item>
+
+      <!-- Submit Registration -->
+      <ion-button type="submit" expand="block">
+        S'inscrire
+      </ion-button>
     </form>
+
+    <!-- Link to go to the Login page -->
     <ion-button expand="block" fill="clear" (click)="goToLogin()">
       Déjà un compte ? Se connecter
     </ion-button>
   </ion-card-content>
 </ion-card>
+
+</ion-content>

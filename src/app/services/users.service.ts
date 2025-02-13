@@ -9,24 +9,28 @@ import { User } from '../models/user.model';
 export class UserService {
   constructor(private db: Database) {}
 
-  addUser(u: User): Observable<User> {
-    return new Observable<User>(observer => {
-      const userRef = ref(this.db, 'users');  
-     
-      const newUserRef = push(userRef);  
+  addMovie(u: User): Observable<User> {
+      return new Observable<User>(observer => {
        
-      const userWithId = { ...u, id: newUserRef.key };
-
-     
-      set(newUserRef, userWithId)
-        .then(() => {
-          observer.next(userWithId);
-          observer.complete();
-        })
-        .catch(error => {
-          observer.error(error);
-        });
-    });
+        const usersRef = ref(this.db, 'users');
+        
+        // Create a new child reference with a unique key
+        const newUserRef = push(usersRef);
+        
+        // Write the movie data to the new reference
+        set(newUserRef, u)
+          .then(() => {
+            // Update the movie object with its generated id
+            u.id = newUserRef.key;
+            // Emit the movie back to the observer
+            observer.next(u);
+            observer.complete();
+          })
+          .catch(error => {
+            // Emit the error if the write fails
+            observer.error(error);
+          });
+      });
   }
 
   getUsers(): Observable<User[]> {

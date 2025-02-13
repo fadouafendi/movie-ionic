@@ -6,7 +6,6 @@ export interface User {
     lastName: string;
     email: string;
     photo: string;
-    isActive: boolean;
     desactivated: boolean;
     favoriteMovies: Movie[]
     role: 'user' | 'admin';

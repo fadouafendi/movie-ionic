@@ -43,23 +43,10 @@ export class AuthService {
   }
 
   // Register
-  async register(email: string, password: string, firstName: string, lastName: string, photoBase64: string | null) {
+  async register(email: string, password: string, firstName: string, lastName: string) {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
-      let photoURL = '';
-
-      if (photoBase64) {
-        photoURL = await this.uploadPhoto(user.uid, photoBase64);
-      }
-
-      const userDocRef = doc(this.firestore, `users/${user.uid}`);
-      await setDoc(userDocRef, {
-        firstName,
-        lastName,
-        email,
-        photoURL
-      });
 
       return user;
     } catch (error) {
