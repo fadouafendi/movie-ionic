@@ -1,0 +1,18 @@
+<div *ngFor="let user of users$ | async" class="user-card">
+  <div class="user-info">
+   
+    <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Status:</strong> {{ user.desactivated ? 'Inactive' : 'Active' }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+
+     <!-- <button *ngIf="user.isActive" class="deactivate-btn" (click)=""> -->
+      <div class="action-container">
+       <button *ngIf="user.desactivated == false" class="deactivate-btn" >
+          Desactivate
+        </button>
+      </div>
+  </div>
+ 
+ 
+  </div>

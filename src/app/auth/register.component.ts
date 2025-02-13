@@ -19,6 +19,7 @@ export class RegisterPage {
     email: '',
     photo: '',
     isActive: true,
+    desactivated: true,
     favoriteMovies: [],
     role: 'user'
   };
