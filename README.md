@@ -10,7 +10,7 @@
 - listMovies: done
 - add-movies: done
 - show likes number and heart filled if favorite: done
-- register: adel
+- register: done
 - desactiver les users: oumaima
 - list of users: oumaima
 - design UI: oumaima
