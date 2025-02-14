@@ -5,10 +5,8 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { ref as dbRef, equalTo, get, getDatabase, orderByChild, query } from '@angular/fire/database';
-import { User as AppUser} from '../models/user.model';
-import { UserService } from '../services/users.service';
-
+import { ref as dbRef, equalTo, get, getDatabase, orderByChild, query } from '@angular/fire/database';import { UserService } from '../services/users.service';
+import { ToastService } from '../services/toast.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +15,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null);
   user$: Observable<User | null> = this.userSubject.asObservable();
 
-  constructor(private auth: Auth, private firestore: Firestore, private storage: Storage, private router: Router, private userService: UserService) {}
+  constructor(private toastService: ToastService, private auth: Auth, private firestore: Firestore, private storage: Storage, private router: Router, private userService: UserService) {}
 
 
   // Prendre une photo
@@ -115,6 +113,8 @@ export class AuthService {
       }
 
       if (user.desactivated){
+       
+        this.toastService.presentToast('Your account has been deactivated. Please contact Support or Admin!', 3000, 'top');
         throw new Error("No connected user email found in session storage.");
         }
        
