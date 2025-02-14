@@ -11,8 +11,13 @@
 - add-movies: done
 - show likes number and heart filled if favorite: done
 - register: done
-- desactiver les users: oumaima
-- list of users: oumaima
-- design UI: oumaima
+- desactiver les users: done
+- list of users:done
 - calcul correspondances fadwa
 - on click heart add to favorite : done
+
+
+## TO DO
+- gestion des routes redirection
+- Gestion des role / qui a acces a quoi
+-- design des interfaces   
