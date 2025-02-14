@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule]
+  imports: [CommonModule, FormsModule, IonicModule, NavbarComponent]
 })
 export class AddMoviePage {
   movie: Movie = { title: '', genre: '', year: new Date().getFullYear(), favoriteCount: 0 };

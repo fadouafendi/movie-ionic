@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/users.service';
 import { User } from '../models/user.model';    
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common'; 
@@ -25,7 +25,8 @@ export class UserComponent implements OnInit {
     if (!sessionStorage.getItem("connectedUser")) {
       this.router.navigate(["/users"]);
     }
-    this.users$ = this.userService.getUsers();  
+    this.users$ = this.userService.getUsers().pipe(
+      map((users: User[]) => users.filter(user => user.role !== 'admin')));  
   }
 
   isAdmin(){
