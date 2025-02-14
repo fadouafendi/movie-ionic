@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Utilisateurs avec des goûts similaires</ion-label>
+    </ion-list-header>
+    <ng-container *ngIf="matches$ | async as matches">
+      <ion-item *ngFor="let match of matches">
+        <ion-avatar slot="start">
+          <img [src]="match.user.photo" alt="Photo de profil">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ match.user.firstName }} {{ match.user.lastName }}</h2>
+          <p>Taux de correspondance : {{ match.matchRate.toFixed(2) }}%</p>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="matches.length === 0">
+        <ion-label>Aucune correspondance trouvée</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
