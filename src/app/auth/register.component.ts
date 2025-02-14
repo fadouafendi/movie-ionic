@@ -137,7 +137,7 @@ export class RegisterPage {
         this.user.firstName,
         this.user.lastName
       );
-      this.userService.addMovie(this.user).subscribe({
+      this.userService.addUser(this.user).subscribe({
         next: (addedUser: User) => {
           console.log('User added:', addedUser.id);
           this.router.navigate(['/login']);

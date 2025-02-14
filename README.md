@@ -15,4 +15,4 @@
 - list of users: oumaima
 - design UI: oumaima
 - calcul correspondances fadwa
-- on click heart add to favorite : adel
+- on click heart add to favorite : done
