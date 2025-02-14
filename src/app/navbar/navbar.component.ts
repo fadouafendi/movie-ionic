@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +14,20 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent  implements OnInit {
   @Input() title: string = "";
-  isAdmin = false
+  isAdmin = false;
+  isMoviesPage = false;
+
+
   constructor(private readonly authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.isAdmin = (sessionStorage.getItem("connectedUser") === "admin@admin.com");
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        // Adjust this check if you use additional segments or parameters in your /movies route.
+        this.isMoviesPage = event.urlAfterRedirects === '/movies';
+      });
   }
 
     goToUsers(){
@@ -30,6 +40,10 @@ export class NavbarComponent  implements OnInit {
 
     goToMovies(){
       this.router.navigate(["/movies"]);
+    }
+
+    goToMatch(){
+      this.router.navigate(["/match"]);
     }
 
   async logout(){

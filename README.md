@@ -15,9 +15,8 @@
 - list of users:done
 - calcul correspondances fadwa
 - on click heart add to favorite : done
-
-
-## TO DO
 - gestion des routes redirection
 - Gestion des role / qui a acces a quoi
+
+## TO DO
 - design des interfaces   

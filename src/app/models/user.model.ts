@@ -1,4 +1,3 @@
-import { Movie } from "./movie.model";
 
 export interface User {
     id?: string | null; 
@@ -7,6 +6,6 @@ export interface User {
     email: string;
     photo: string;
     desactivated: boolean;
-    favoriteMovies: Movie[]
+    favoriteMovies: string[]
     role: 'user' | 'admin';
   }
