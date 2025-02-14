@@ -1,53 +1,87 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .user-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin: 20px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-  }
-  
-  .user-info {
-    margin-bottom: 20px;
-  }
-  
-  .user-info h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .user-info p {
-    font-size: 1rem;
-    color: #555;
-    margin: 5px 0;
-  }
-  
- 
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  border: 1px solid rgba(224, 224, 224, 0.5); 
+  border-radius: 8px;
+  margin: 5px;
+  padding: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
 
-  .deactivate-btn {
-    background-color: #f44336; 
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 90%;
-    right: 20px;
-    top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .deactivate-btn:hover {
-    background-color: #d32f2f;  
-  }
+}
 
-  button:hover {
-    background-color: #d32f2f;
-  }
-  
-  button.deactivated {
-    background-color: gray;
-    cursor: not-allowed;
-  }
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  font-size: 1rem;
+  color: black;
+  margin: 5px 0;
+}
+
+.status-badge {
+  padding: 5px 5px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.status-badge.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.inactive {
+  background-color: #f44336;
+  color: white;
+}
+
+.deactivate-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activate-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activate-btn:hover {
+  background-color: green;
+}
+
+.deactivate-btn:hover {
+  background-color: #d32f2f;
+}
+
+.deactivated {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+:host{
+  background: url('/assets/bg.webp') ;
+}

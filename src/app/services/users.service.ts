@@ -61,6 +61,12 @@ export class UserService {
     return update(userRef, { desactivated: true }); 
   }
 
+
+  activateUser(userId: string): Promise<void> {
+    const userRef = ref(this.db, `users/${userId}`);
+    return update(userRef, { desactivated: false }); 
+  }
+
   getUserById(userId: string): Observable<User | null> {
     const userRef = ref(this.db, `users/${userId}`);
     return from(get(userRef).then(snapshot => snapshot.exists() ? snapshot.val() as User : null));
