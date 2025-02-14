@@ -26,6 +26,7 @@ export class LoginComponent {
   async login() {
     try {
       await this.authService.login(this.email, this.password);
+      this.email, this.password = '', '';
       this.router.navigate(['/movies']);
     } catch (error) {
       console.error('Erreur de connexion', error);

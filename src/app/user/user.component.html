@@ -1,26 +1,36 @@
-<div class="container">
-  <div *ngFor="let user of users$ | async" class="user-card">
-    <div class="user-header">
-      <h3></h3>
-      <button 
-        (click)="user.desactivated ? activateUser(user) : deactivateUser(user)"
-        [ngClass]="user.desactivated ? 'activate-btn' : 'deactivate-btn'">
-        {{ user.desactivated ? 'activate' : 'Desactivate' }}
-      </button>
-    </div>
+<app-navbar title="Liste des Utilisateurs">
+</app-navbar>
 
-    <div class="user-info">
-      <p><strong>Email:</strong> {{ user.email }}</p>
+<ion-content [fullscreen]="true" class="bg-image">
+  <ion-list>
+    <ion-card *ngFor="let user of users$ | async">
+            <ion-card-content>
+              <ion-button style="float: right;"
+            (click)="user.desactivated ? activateUser(user) : deactivateUser(user)"
+            [color]="user.desactivated ? 'success' : 'danger'">
+            {{ user.desactivated ? 'Activate' : 'Desactivate' }}
+          </ion-button>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>Email:</strong> {{ user.email }}
+          </ion-label>
+        </ion-item>
 
-      <p><strong>Role:</strong> {{ user.role }}</p>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>Role:</strong> {{ user.role }}
+          </ion-label>
+        </ion-item>
 
-
-      <p>
-        <strong>Status:</strong> 
-        <span class="status-badge" [ngClass]="{ 'active': !user.desactivated, 'inactive': user.desactivated }">
-          {{ user.desactivated ? 'Inactive' : 'Active' }}
-        </span>
-      </p>
-    </div>
-  </div>
-</div>
+        <ion-item lines="none">
+          <ion-label>
+           <ion-badge [color]="user.desactivated ? 'danger' : 'success'">
+              {{ user.desactivated ? 'Inactive' : 'Active' }}
+            </ion-badge>
+          </ion-label>
+        </ion-item>
+        
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

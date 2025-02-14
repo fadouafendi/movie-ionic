@@ -2,7 +2,9 @@
   <ion-toolbar>
     <ion-title>{{ title }}</ion-title>
     <ion-buttons slot="end">
-      <ng-content select="[navbar-buttons]"></ng-content>
+      <ion-button (click)="goToMovies()">Movies</ion-button>
+      <ion-button *ngIf="isAdmin"(click)="goToUsers()">Users</ion-button>
+      <ion-button *ngIf="isAdmin" (click)="goToAddMovie()">Ajouter</ion-button>    
       <ion-button (click)="logout()">Logout</ion-button>
     </ion-buttons>
   </ion-toolbar>

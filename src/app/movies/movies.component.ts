@@ -22,6 +22,8 @@ export class MoviesPage implements OnInit {
   // Load favorite movies from session storage (which contains an array of movie ids)
   favoriteMovies: string[] = JSON.parse(sessionStorage.getItem('favoriteMovies') ?? "[]");
 
+  isAdmin = false
+
   constructor(
     private movieService: MovieService, 
     private userService: UserService,
@@ -34,16 +36,14 @@ export class MoviesPage implements OnInit {
     if (!connectedUserEmail) {
       this.router.navigate(["/login"]);
     }
+    this.isAdmin = (sessionStorage.getItem("connectedUser") === "admin@admin.com");
+    
     this.movies$ = this.movieService.getMovies();
   }
 
-  addMovie() {
-    this.router.navigate(['/add-movie']);
-  }
 
-  isFavorite(movie: Movie): boolean {
-    console.log({movie, isFavorite: movie.id ? this.favoriteMovies.includes(movie.id) : false});
-    
+
+  isFavorite(movie: Movie): boolean {   
     return movie.id ? this.favoriteMovies.includes(movie.id) : false;
   }
 

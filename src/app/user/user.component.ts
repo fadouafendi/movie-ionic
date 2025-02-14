@@ -3,15 +3,16 @@ import { UserService } from '../services/users.service';
 import { User } from '../models/user.model';    
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common'; 
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-movies',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule, IonicModule, NavbarComponent
   ]
 })
 
@@ -25,6 +26,11 @@ export class UserComponent implements OnInit {
       this.router.navigate(["/users"]);
     }
     this.users$ = this.userService.getUsers();  
+  }
+
+  isAdmin(){
+    console.log({isAdmin: sessionStorage.getItem("connectedUser") === "admin@admin.com"});
+    return sessionStorage.getItem("connectedUser") === "admin@admin.com"
   }
 
 
