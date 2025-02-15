@@ -2,11 +2,23 @@
   <ion-toolbar>
     <ion-title>{{ title }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="goToMovies()">Movies</ion-button>
-      <ion-button (click)="goToMatch()">Match</ion-button>
-      <ion-button *ngIf="isAdmin"(click)="goToUsers()">Users</ion-button>
-      <ion-button *ngIf="isAdmin && isMoviesPage" (click)="goToAddMovie()">Ajouter</ion-button>    
-      <ion-button (click)="logout()">Logout</ion-button>
+      <!-- Menu button that triggers the popover -->
+      <ion-button id="menu-button">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<!-- The popover content wrapped in an ng-template -->
+<ion-popover trigger="menu-button" triggerAction="click">
+  <ng-template>
+    <ion-list>
+      <ion-item button (click)="goToMovies()">Movies</ion-item>
+      <ion-item button (click)="goToMatch()">Match</ion-item>
+      <ion-item *ngIf="isAdmin" button (click)="goToUsers()">Users</ion-item>
+      <ion-item *ngIf="isAdmin && isMoviesPage" button (click)="goToAddMovie()">Ajouter</ion-item>
+      <ion-item button (click)="logout()">Logout</ion-item>
+    </ion-list>
+  </ng-template>
+</ion-popover>
